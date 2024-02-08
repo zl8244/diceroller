@@ -10,6 +10,7 @@ public class Main {
 
     public static void main(String[] args) {
         Character MC = new Character();
-        MC.characterAction("run", 6);
+        int numSides = parseArgs(args, 6);
+        MC.characterAction("run", numSides);
     }
 }
