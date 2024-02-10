@@ -29,15 +29,39 @@ public class Character {
         this.luck = luck;
     }
 
-    public void characterAction(String action, int diceSides) {
+    public void characterAction(String action, int diceSides, String modifiers) {
         Dice dice = new Dice(diceSides);
         System.out.println("You attempt to " + action + ".");
-        System.out.println("Rolling a d" + diceSides);
-        int result = dice.rollDice();
-        if(result > diceSides/2) {
-            System.out.println("You succeed at " + action + " with a roll of " + result + ".");
-        } else {
-            System.out.println("You fail at " + action + " with a roll of " + result + ".");
+        int numDice = 0;
+        switch (modifiers) {
+            case "str":
+                numDice = strength;
+                break;
+            case "dex":
+                numDice = dexterity;
+                break;
+            case "con":
+                numDice = constitution;
+                break;
+            case "int":
+                numDice = intelligence;
+                break;
+            case "wis":
+                numDice = wisdom;
+                break;
+            case "cha":
+                numDice = charisma;
+                break;
+            case "luck":
+                numDice = luck;
+                break;
+            default:
+                break;
         }
+        int maxRoll = 0;
+        for(int i = 0; i < numDice; i++) {
+            maxRoll = Math.max(maxRoll, dice.rollDice());
+        }
+        System.out.println("Max roll: " + maxRoll);
     }
 }

@@ -8,6 +8,9 @@ public class Dice {
     }
 
     public int rollDice() {
-        return (int)(Math.random() * numSides)+1;
+        System.out.println("Rolling a d" + numSides);
+        int diceRoll = (int)(Math.random() * numSides)+1;
+        System.out.println("Rolled a " + diceRoll);
+        return diceRoll;
     }
 }
