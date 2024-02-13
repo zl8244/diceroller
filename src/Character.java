@@ -56,6 +56,7 @@ public class Character {
                 numDice = luck;
                 break;
             default:
+                numDice = 1;
                 break;
         }
         int maxRoll = 0;
