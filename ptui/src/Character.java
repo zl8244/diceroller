@@ -32,37 +32,37 @@ public class Character {
     public void characterAction(String action, int diceSides, String modifiers) {
         Dice dice = new Dice(diceSides);
         System.out.println("You attempt to " + action + ".");
-        int numDice = 0;
+        int numDice = luck;
+        int maxRoll = 0;
+        for(int i = 0; i < numDice; i++) {
+            maxRoll = Math.max(maxRoll, dice.rollDice());
+        }
+        System.out.println("Max Roll is: " + maxRoll);
+        int bonusPoints = 0;
         switch (modifiers) {
             case "str":
-                numDice = strength;
+                bonusPoints = maxRoll/strength;
                 break;
             case "dex":
-                numDice = dexterity;
+                bonusPoints = maxRoll/dexterity;
                 break;
             case "con":
-                numDice = constitution;
+                bonusPoints = maxRoll/constitution;
                 break;
             case "int":
-                numDice = intelligence;
+                bonusPoints = maxRoll/intelligence;
                 break;
             case "wis":
-                numDice = wisdom;
+                bonusPoints = maxRoll/wisdom;
                 break;
             case "cha":
-                numDice = charisma;
-                break;
-            case "luck":
-                numDice = luck;
+                bonusPoints = maxRoll/charisma;
                 break;
             default:
                 numDice = 1;
                 break;
         }
-        int maxRoll = 0;
-        for(int i = 0; i < numDice; i++) {
-            maxRoll = Math.max(maxRoll, dice.rollDice());
-        }
-        System.out.println("Max roll: " + maxRoll);
+        int finalResult = maxRoll+bonusPoints;
+        System.out.println("Final roll is " + finalResult);
     }
 }
