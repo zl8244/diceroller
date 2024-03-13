@@ -1,37 +1,54 @@
 package ptui.src;
 public class Character {
     
-    private final int strength;
-    private final int dexterity;
-    private final int constitution;
-    private final int intelligence;
-    private final int wisdom;
-    private final int charisma;
-    private final int luck;
+    private String name;
+    private int strength;
+    private int dexterity;
+    private int constitution;
+    private int intelligence;
+    private int wisdom;
+    private int charisma;
+    private int luck;
 
-    public Character() {
-        strength = 5;
-        dexterity = 5;
-        constitution = 5;
-        intelligence = 5;
-        wisdom = 5;
-        charisma = 5;
-        luck = 5;
+    public String getName() {
+        return name;
     }
 
-    public Character(int str, int dex, int con, int intel, int wis, int cha, int luck) {
-        strength = str;
-        dexterity = dex;
-        constitution = con;
-        intelligence = intel;
-        wisdom = wis;
-        charisma = cha;
-        this.luck = luck;
+    public void setName(String input) {
+        name = input;
     }
 
-    public void characterAction(String action, int diceSides, String modifiers) {
-        Dice dice = new Dice(diceSides);
-        System.out.println("You attempt to " + action + ".");
+    public void setStr(int num) {
+        strength = num;
+    }
+
+    public void setDex(int num) {
+        dexterity = num;
+    }
+
+    public void setCon(int num) {
+        constitution = num;
+    }
+
+    public void setInt(int num) {
+        intelligence = num;
+    }
+
+    public void setWis(int num) {
+        wisdom = num;
+    }
+
+    public void setCha(int num) {
+        charisma = num;
+    }
+
+    public void setLuck(int num) {
+        luck = num;
+    }
+
+    public void characterAction(String action, String modifiers) {
+        Dice dice = new Dice(20);
+        System.out.println("" + name + " attempts to " + action + ".");
         int numDice = luck;
         int maxRoll = 0;
         for(int i = 0; i < numDice; i++) {
@@ -64,5 +81,16 @@ public class Character {
         }
         int finalResult = maxRoll+bonusPoints;
         System.out.println("Final roll is " + finalResult);
+    }
+
+    @Override
+    public String toString() {
+        String character = "" + name + ":\n\tStrength: " + strength + "\n\t" +
+            "Dexterity: " + dexterity + "\n\t" +
+            "Constitution: " + constitution + "\n\t" +
+            "Intelligence: " + intelligence + "\n\t" +
+            "Wisdom: " + wisdom + "\n\t" +
+            "Charisma: " + charisma + "\n\t";
+        return character; 
     }
 }
